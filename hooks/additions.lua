@@ -489,17 +489,22 @@ end
 for y, part_id in ipairs(ar_gadgets) do 
 table.list_append(self.wpn_fps_smg_pm9.uses_parts, { part_id })
 table.list_append(self.wpn_fps_smg_x_pm9.uses_parts, { part_id })
-if not self.wpn_fps_smg_pm9.adds[part_id] then self.wpn_fps_smg_pm9.adds[part_id] = {} end
+self.wpn_fps_smg_pm9.adds[part_id] = self.wpn_fps_smg_pm9.adds[part_id] or {}
 self.wpn_fps_smg_pm9.adds[part_id] = {"wpn_fps_smg_pm9_fl_adapter"}
 self.wpn_fps_smg_pm9.override[part_id] = {a_obj = "a_fl2"}
+self.wpn_fps_smg_x_pm9.adds[part_id] = self.wpn_fps_smg_pm9.adds[part_id] or {}
+self.wpn_fps_smg_x_pm9.adds[part_id] = {"wpn_fps_smg_pm9_fl_adapter"}
 self.wpn_fps_smg_x_pm9.override[part_id] = {a_obj = "a_fl2"}
 end
+self.parts.wpn_fps_smg_pm9_body_standard.forbids = {"wpn_fps_addon_ris"}
 
 --VD-12
 table.list_append(self.wpn_fps_sho_x_sko12.uses_parts, {"wpn_fps_sho_sko12_s_adapter"})
-self.parts.wpn_fps_smg_pm9_body_standard.forbids = {"wpn_fps_addon_ris"}
+table.list_append(self.wpn_fps_sho_x_sko12.default_blueprint, {"wpn_upg_o_marksmansight_rear_vanilla"})
+table.list_append(self.wpn_fps_sho_x_sko12.uses_parts, {"wpn_upg_o_marksmansight_rear_vanilla"})
+table.list_append(self.wpn_fps_sho_x_sko12.uses_parts, {"wpn_upg_o_marksmansight_front_vanilla"})
 
---Parabellum
+-- Pistols without barrel extensions
 local pistol_seeds = {
 "wpn_fps_pis_breech",
 "wpn_fps_pis_peacemaker",
@@ -610,6 +615,7 @@ local no_stock = {
 		"wpn_fps_lmg_hk51b",
 		"wpn_fps_sho_sko12",
 		"wpn_fps_snp_contender",
+		"wpn_fps_lmg_hcar",
 		-- custom
 	"wpn_fps_ass_x_g36",
 	"wpn_fps_ass_x_s552"
@@ -706,7 +712,7 @@ local no_sight = {
 	"wpn_fps_sho_sko12",
 	"wpn_fps_sho_x_sko12",
 	"wpn_fps_lmg_hcar",
-	"wpn_fps_lmg_hailstorm",
+	"wpn_fps_hailstorm",
 	"wpn_fps_gre_ms3gl",
 	"wpn_fps_gre_ray",
 	"wpn_fps_rpg7",

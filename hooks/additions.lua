@@ -500,17 +500,19 @@ table.list_append(self.wpn_fps_sho_x_sko12.uses_parts, {"wpn_fps_sho_sko12_s_ada
 self.parts.wpn_fps_smg_pm9_body_standard.forbids = {"wpn_fps_addon_ris"}
 
 --Parabellum
-table.list_append(self.wpn_fps_pis_breech.uses_parts, {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_peacemaker.uses_parts, {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_2006m.uses_parts     , {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_chinchilla.uses_parts, {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_model3.uses_parts    , {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_x_2006m.uses_parts     , {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_x_chinchilla.uses_parts, {"wpn_fps_upg_pis_ns_flash"})
-table.list_append(self.wpn_fps_pis_x_model3.uses_parts    , {"wpn_fps_upg_pis_ns_flash"})
-
-
-
+local pistol_seeds = {
+"wpn_fps_pis_breech",
+"wpn_fps_pis_peacemaker",
+"wpn_fps_pis_2006m",
+"wpn_fps_pis_chinchilla",
+"wpn_fps_pis_model3",
+"wpn_fps_pis_x_2006m",
+"wpn_fps_pis_x_chinchilla",
+"wpn_fps_pis_x_model3"
+}
+for v, pis_seed in ipairs(pistol_seeds) do
+table.list_append(self[pis_seed].uses_parts, {"wpn_fps_upg_pis_ns_flash"})
+end
 
 -- Custom Akimbos
 table.list_append(self.wpn_fps_ass_x_ak74.uses_parts, {
@@ -701,6 +703,14 @@ local no_sight = {
 	"wpn_fps_smg_x_shepheard",
 	"wpn_fps_ass_komodo",
 	"wpn_fps_ass_shak12",
+	"wpn_fps_sho_sko12",
+	"wpn_fps_sho_x_sko12",
+	"wpn_fps_lmg_hcar",
+	"wpn_fps_lmg_hailstorm",
+	"wpn_fps_gre_ms3gl",
+	"wpn_fps_gre_ray",
+	"wpn_fps_rpg7",
+	"wpn_fps_bow_elastic",
 	-- custom
 	"wpn_fps_ass_x_amcar"
 }

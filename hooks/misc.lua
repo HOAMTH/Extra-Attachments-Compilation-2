@@ -72,6 +72,7 @@ end
 	self.wpn_fps_snp_victor.override.wpn_fps_smg_thompson_o_adapter = {a_obj = "a_o_iron_3"}
 	self.wpn_fps_snp_victor.adds.wpn_fps_m16_fg_vietnam 	= {"wpn_fps_smg_thompson_o_adapter"}
 	self.wpn_fps_snp_victor.adds.wpn_fps_m4_uupg_fg_lr300 = {"wpn_fps_smg_thompson_o_adapter"}
+	self.parts.wpn_fps_snp_victor_body_receiver_lower.type = "lower_reciever"
 -- Misc AK stuff
 self.wpn_fps_smg_x_akmsu.stock_adapter = "wpn_upg_ak_s_adapter"
 self.wpn_fps_smg_coal.stock_adapter = "wpn_upg_ak_s_adapter"
@@ -189,64 +190,31 @@ end
 self.wpn_fps_smg_x_mp5.override.wpn_fps_upg_mp5_m_drum = self.wpn_fps_smg_x_mp5.override.wpn_fps_upg_mp5_m_drum or {}
 self.wpn_fps_smg_x_mp5.override.wpn_fps_upg_mp5_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_mp5_m_drum.stats)
 self.wpn_fps_smg_x_mp5.override.wpn_fps_upg_mp5_m_drum.stats.extra_ammo = self.parts.wpn_fps_upg_mp5_m_drum.stats.extra_ammo * 2
-self.parts.wpn_upg_ak_m_drum.unit = "units/pd2_dlc_gage_lmg/weapons/wpn_fps_lmg_rpk_pts/wpn_lmg_rpk_m_drum"
-self.parts.wpn_upg_ak_m_drum.stats = {
-	value = 5,
-	extra_ammo = 35,
-	spread = -2,
-	recoil = -2,
-	concealment = -4
+
+self.wpn_fps_smg_x_akmsu.override.wpn_fps_upg_ak_m_drum = self.wpn_fps_smg_x_akmsu.override.wpn_fps_upg_ak_m_drum or {}
+self.wpn_fps_smg_x_akmsu.override.wpn_fps_upg_ak_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_ak_m_drum.stats)
+self.wpn_fps_smg_x_akmsu.override.wpn_fps_upg_ak_m_drum.stats.extra_ammo = self.parts.wpn_fps_upg_ak_m_drum.stats.extra_ammo * 2
+
+local smaller_clip_wpns = {
+"wpn_fps_ass_amcar",
+"wpn_fps_ass_x_amcar",
+"wpn_fps_smg_olympic",
+"wpn_fps_smg_x_olympic"
 }
-self.wpn_fps_smg_x_akmsu.override.wpn_upg_ak_m_drum = {
-		stats = {
-			value = 4,
-			extra_ammo = 45,
-			spread_moving = 1,
-			recoil = 1,
-			spread = -1,
-			concealment = -3
-		}
-	}
-self.wpn_fps_smg_x_akmsu.override.wpn_fps_upg_ak_m_drum = {
-		stats = {
-			value = 4,
-			extra_ammo = 50,
-			spread_moving = 1,
-			recoil = 1,
-			spread = -1,
-			concealment = -3
-		}
-	}
-self.parts.wpn_fps_upg_m4_m_drum.unit = "units/pd2_dlc_opera/weapons/wpn_fps_ass_tecci_pts/wpn_fps_ass_tecci_m_drum"
-self.parts.wpn_fps_upg_m4_m_drum.stats = {
-			extra_ammo = 35,
-			value = 9,
-			concealment = -5
-}
-self.parts.wpn_fps_upg_m4_m_drum.bullet_objects = {
-			amount = 100,
-			prefix = "g_bullet_"
-		}
-self.wpn_fps_smg_x_olympic.override.wpn_fps_upg_m4_m_drum = {stats = {
-			extra_ammo = 50,
-			value = 9,
-			concealment = -5
-}}
-self.wpn_fps_ass_amcar.override.wpn_fps_upg_m4_m_drum = {stats = {
-			extra_ammo = 40,
-			value = 9,
-			concealment = -5
-}}
-self.wpn_fps_smg_x_olympic.override.wpn_fps_ass_upg_m4_m_drum = {stats = {
-			extra_ammo = 50,
-			value = 9,
-			concealment = -5
-}}
-self.wpn_fps_ass_amcar.override.wpn_fps_ass_upg_m4_m_drum = {stats = {
-			extra_ammo = 40,
-			value = 9,
-			concealment = -5
-}}
+for n, wpns in ipairs(smaller_clip_wpns) do
+	local offset = 5
+	local multiplier = 1
+	if string.match(wpns, "_x_") then multiplier = 2 end
+	for m, mags in ipairs(m4_mags) do
+		self[wpns].override[mags] = self[wpns].override[mags] or {}
+		self[wpns].override[mags].stats = deep_clone(self.parts[mags].stats)
+		if self[wpns].override[mags].stats.extra_ammo then self[wpns].override[mags].stats.extra_ammo = (self.parts[mags].stats.extra_ammo + offset) * multiplier end
+	end
+	self[wpns].override.wpn_fps_ass_upg_m4_m_drum = self[wpns].override.wpn_fps_ass_upg_m4_m_drum or {}
+	self[wpns].override.wpn_fps_ass_upg_m4_m_drum.stats = deep_clone(self.parts.wpn_fps_ass_upg_m4_m_drum.stats)
+	if self[wpns].override.wpn_fps_ass_upg_m4_m_drum.stats.extra_ammo then self[wpns].override.wpn_fps_ass_upg_m4_m_drum.stats.extra_ammo = (self.parts.wpn_fps_ass_upg_m4_m_drum.stats.extra_ammo + offset) * multiplier end
+end
+end
 -- G3
 self.wpn_fps_ass_g3.adds.wpn_fps_upg_o_leupold = {"wpn_fps_ass_g3_body_rail"}
 self.wpn_fps_ass_g3.adds.wpn_fps_upg_o_45iron  = {"wpn_fps_ass_g3_body_rail"}
@@ -270,6 +238,8 @@ local M4_ur = {
 for u, ur_id in ipairs(M4_ur) do self.wpn_fps_ass_tecci.adds[ur_id] = {"wpn_fps_smg_erma_extra_rail", "wpn_fps_amcar_bolt_standard"}
 	if self.parts[ur_id].override.wpn_fps_m4_uupg_draghandle then
 		self.parts[ur_id].override.wpn_fps_ass_tecci_dh_standard = deep_clone(self.parts[ur_id].override.wpn_fps_m4_uupg_draghandle)
+		self.parts[ur_id].override.wpn_fps_snp_victor_dh_standard = deep_clone(self.parts[ur_id].override.wpn_fps_m4_uupg_draghandle)
+		self.parts[ur_id].override.wpn_fps_snp_victor_bolt_standard = deep_clone(self.parts[ur_id].override.wpn_fps_amcar_bolt_standard)
 	end
 end
 for w, mags in ipairs(m4_mags) do
@@ -427,22 +397,6 @@ self.parts.wpn_fps_ass_sub2000_assault_kit.custom_stats = {
 		ammo_pickup_max_mul = 3
 }
 -- Misc Overrides
-local smaller_clip_wpns = {
-"wpn_fps_ass_amcar",
-"wpn_fps_ass_x_amcar",
-"wpn_fps_smg_olympic",
-"wpn_fps_smg_x_olympic"
-}
-for n, wpns in ipairs(smaller_clip_wpns) do
-	for m, mags in ipairs(m4_mags) do
-		local offset = 5
-		local multiplier = 1
-		if string.match(wpns, "_x_") then multiplier = 2 end
-		self[wpns].override[mags] = self[wpns].override[mags] or {}
-		self[wpns].override[mags].stats = deep_clone(self.parts[mags].stats)
-		if self[wpns].override[mags].stats.extra_ammo then self[wpns].override[mags].stats.extra_ammo = (self.parts[mags].stats.extra_ammo + offset) * multiplier end
-	end
-end
 self.parts.wpn_fps_saw_body_silent.perks = {"silencer"}
 self.parts.wpn_fps_upg_o_shortdot.name_id = "bm_wp_upg_o_shortdot"
 self.wpn_fps_ass_sub2000.override.wpn_fps_addon_ris = {parent = "foregrip"}

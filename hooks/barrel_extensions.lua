@@ -33,19 +33,19 @@ for i, data in ipairs(existing_weapons) do
 		table.insert(total_pis, data)					-- Create a list of all pistols (They all use the "Flash Hider").
 	end                                                 -- We'll use this to give all "pistol-type" barrel extensions to every "pistol-type" gun.
 end
-log("total_pis : " .. table.size(total_pis))
-for i, tpis in pairs(total_pis) do log(i .. " " .. tostring(tpis)) end
+-- log("total_pis : " .. table.size(total_pis))
+-- for i, tpis in pairs(total_pis) do log(i .. " " .. tostring(tpis)) end
 
 for m, data in ipairs(total_pis) do
 	for _, ns_pis in ipairs(all_total_ns) do
 		if table.contains(self[data].uses_parts, ns_pis) then
-			table.insert(all_pis_ns, ns_pis)            -- Gather all the barrel extensions that are actually used by "Pistol-type" guns.
+			if not table.contains(all_pis_ns, ns_pis) then table.insert(all_pis_ns, ns_pis) end           -- Gather all the barrel extensions that are actually used by "Pistol-type" guns.
 		end
 	end
 end
 all_pis_ns = table.list_union(all_pis_ns)               -- This cuts out duplicates. The list would otherwise be >1200 entries long, all repititions of the same barrel extensions.
-log("all_pis_ns : " .. table.size(all_pis_ns))
-for i, npis in pairs(all_pis_ns) do log(i ..  " " .. tostring(npis)) end	
+-- log("all_pis_ns : " .. table.size(all_pis_ns))
+-- for i, npis in pairs(all_pis_ns) do log(i ..  " " .. tostring(npis)) end	
 
 self.wpn_fps_pis_peacemaker.override.wpn_fps_upg_pis_ns_flash = { a_obj = "a_ns", parent = "slide"}
 self.wpn_fps_pis_2006m.override.wpn_fps_upg_pis_ns_flash = { a_obj = "a_ns", parent = "barrel"}
@@ -58,25 +58,25 @@ for a, data in pairs(total_pis) do
 		for c, forbidding in ipairs(all_parts_with_forbids) do
 			if table.contains(self.parts[forbidding].forbids, "wpn_fps_upg_pis_ns_flash") and not table.contains(self.parts[forbidding].forbids, ns_id) then
 				table.insert(self.parts[forbidding].forbids, ns_id)
-				log("Adding to Forbids : " .. "self.parts." .. forbidding .. ".forbids." .. ns_id) 
+				-- log("Adding to Forbids : " .. "self.parts." .. forbidding .. ".forbids." .. ns_id) 
 			end
 		end
 		for d, overriding in ipairs(all_parts_with_overrides) do
 			if self.parts[overriding].override.wpn_fps_upg_pis_ns_flash and not self.parts[overriding].override[ns_id] then
 				self.parts[overriding].override[ns_id] = deep_clone(self.parts[overriding].override.wpn_fps_upg_pis_ns_flash)
-				log("Cloning Part Override : " .. "self.parts." .. overriding .. ".override." .. ns_id) 
+				-- log("Cloning Part Override : " .. "self.parts." .. overriding .. ".override." .. ns_id) 
 			end
 		end
 		if not self[data].override[ns_id] and self[data].override.wpn_fps_upg_pis_ns_flash or self[data].override.wpn_fps_upg_ns_pis_putnik then
 			if self[data].override.wpn_fps_upg_pis_ns_flash then -- Check if there's already an override for the Flash Hider or Medved Suppressor.
 				self[data].override[ns_id]	= deep_clone(self[data].override.wpn_fps_upg_pis_ns_flash) -- Copy it.
-				log("Cloning Weapon Override (Flash Hider): " .. "self." .. data .. ".override." .. ns_id) 
+				-- log("Cloning Weapon Override (Flash Hider): " .. "self." .. data .. ".override." .. ns_id) 
 			elseif self[data].override.wpn_fps_upg_ns_pis_putnik then
 				self[data].override[ns_id] = deep_clone(self[data].override.wpn_fps_upg_ns_pis_putnik) 
-				log("Cloning Weapon Override (Medved Suppressor): " .. "self." .. data .. ".override." .. ns_id) 
+				-- log("Cloning Weapon Override (Medved Suppressor): " .. "self." .. data .. ".override." .. ns_id) 
 			end
 			if string.match(data, "_rage") or string.match(data, "2006") then
-			log("Setting Weapon Override : " .. "self." .. data .. ".override." .. ns_id) 
+			-- log("Setting Suppressor Override : " .. "self." .. data .. ".override." .. ns_id) 
 			self[data].override[ns_id] = deep_clone(self[data].override.wpn_fps_upg_pis_ns_flash)
 				if self.parts[ns_id].sub_type == "silencer" then
 					table.list_append(self[data].override[ns_id], {sound_switch = {suppressed = "suppressed_c"}})

@@ -86,7 +86,12 @@ local ak_s_seed = {
 "wpn_fps_lmg_rpk",
 "wpn_fps_ass_galil",
 "wpn_fps_smg_x_vityaz",
-"wpn_fps_smg_vityaz"
+"wpn_fps_smg_vityaz",
+-- Customs
+"wpn_fps_ass_x_ak74",
+"wpn_fps_ass_x_akm",
+"wpn_fps_ass_x_akm_gold",
+"wpn_fps_lmg_x_rpk"
 }
 for f, wpn in ipairs(ak_s_seed) do
 	table.list_append(self[wpn].uses_parts, {"wpn_upg_ak_s_skfoldable"})
@@ -102,7 +107,12 @@ end
 
 local ak_fg_seed = {
 "wpn_fps_shot_saiga",
-"wpn_fps_lmg_rpk"
+"wpn_fps_lmg_rpk",
+-- Customs
+"wpn_fps_ass_x_ak74",
+"wpn_fps_ass_x_akm",
+"wpn_fps_ass_x_akm_gold",
+"wpn_fps_lmg_x_rpk"
 }
 for f, wpn in ipairs(ak_fg_seed) do
 	table.list_append(self[wpn].uses_parts, {"wpn_upg_ak_fg_combo2"})
@@ -243,52 +253,39 @@ local rif = {
 "wpn_fps_ass_m4",
 "wpn_fps_ass_m16",
 "wpn_fps_ass_amcar",
+"wpn_fps_ass_x_amcar",
 "wpn_fps_smg_olympic",
 "wpn_fps_snp_tti",
 "wpn_fps_snp_victor"
 }
 for i, wpn in ipairs(rif) do
-	for j, fg in ipairs(m4_fg) do
-		if not table.contains(self[wpn].uses_parts, fg) then
-			if (string.match(wpn, "contraband") or string.match(wpn, "tecci")) then
-				if not string.match(fg, "vietnam") then
+	if self[wpn] then
+		for j, fg in ipairs(m4_fg) do
+			if not table.contains(self[wpn].uses_parts, fg) then
+				if (string.match(wpn, "contraband") or string.match(wpn, "tecci")) then
+					if not string.match(fg, "vietnam") then
+						table.insert(self[wpn].uses_parts, fg)
+					-- log(tostring(wpn) .." has received the M4 foregrip ".. tostring(fg))
+					else
+					end
+				else			
 					table.insert(self[wpn].uses_parts, fg)
-				-- log(tostring(wpn) .." has received the M4 foregrip ".. tostring(fg))
-				else
+					-- log(tostring(wpn) .." has received the M4 foregrip ".. tostring(fg))
 				end
-			else			
-				table.insert(self[wpn].uses_parts, fg)
-				-- log(tostring(wpn) .." has received the M4 foregrip ".. tostring(fg))
-			end
-		end 
-	end
-	for k, ur in ipairs(m4_ur) do
-		if not (string.match(wpn, "contraband") or string.match(wpn, "tti")) then
-			if not table.contains(self[wpn].uses_parts, ur) then 
-				table.insert(self[wpn].uses_parts, ur) 
-				-- log(tostring(wpn) .." has received the M4 uppeer receiver ".. tostring(ur))
+			end 
+		end
+		for k, ur in ipairs(m4_ur) do
+			if not (string.match(wpn, "contraband") or string.match(wpn, "tti")) then
+				if not table.contains(self[wpn].uses_parts, ur) then 
+					table.insert(self[wpn].uses_parts, ur) 
+					log(tostring(wpn) .." has received the M4 upper receiver ".. tostring(ur))
+				end
 			end
 		end
 	end
 end
-table.list_append(self.wpn_fps_snp_victor.uses_parts, {
- "wpn_fps_m4_upper_reciever_edge",
- "wpn_fps_upg_ass_m4_upper_reciever_ballos",
- "wpn_fps_m4_uupg_draghandle_ballos",
- "wpn_fps_upg_ass_m4_upper_reciever_core",
- "wpn_fps_m4_uupg_draghandle_core",
- "wpn_fps_upg_ass_m4_lower_reciever_core",
- "wpn_fps_m4_uupg_upper_radian",
- "wpn_fps_m4_uupg_lower_radian"
-})
 table.list_append(self.wpn_fps_ass_tecci.uses_parts, {
- "wpn_fps_m4_upper_reciever_edge",
- "wpn_fps_upg_ass_m4_upper_reciever_ballos",
- "wpn_fps_m4_uupg_draghandle_ballos",
- "wpn_fps_upg_ass_m4_upper_reciever_core",
- "wpn_fps_m4_uupg_draghandle_core",
  "wpn_fps_upg_ass_m4_lower_reciever_core",
- "wpn_fps_m4_uupg_upper_radian",
  "wpn_fps_m4_uupg_lower_radian"
 })
 table.list_append(self.wpn_fps_smg_olympic.uses_parts, {
@@ -307,13 +304,7 @@ table.list_append(self.wpn_fps_ass_amcar.uses_parts, {
  "wpn_fps_m4_upg_b_long",
  "wpn_fps_m4_upg_b_short",
  "wpn_fps_m4_upg_b_sd",
- "wpn_fps_m4_upper_reciever_edge",
- "wpn_fps_upg_ass_m4_upper_reciever_ballos",
- "wpn_fps_m4_uupg_draghandle_ballos",
- "wpn_fps_upg_ass_m4_upper_reciever_core",
- "wpn_fps_m4_uupg_draghandle_core",
  "wpn_fps_upg_ass_m4_lower_reciever_core",
- "wpn_fps_m4_uupg_upper_radian",
  "wpn_fps_m4_uupg_lower_radian"
 })
 --M308
@@ -329,43 +320,6 @@ table.list_append(self.wpn_fps_ass_g3.uses_parts, {
  "wpn_fps_smg_mp5_s_adjust",
  "wpn_fps_snp_msr_ns_suppressor"
 })
---Bronco
-table.list_append(self.wpn_fps_pis_rage.uses_parts, {
- "wpn_fps_upg_ns_pis_meatgrinder",
- "wpn_fps_upg_ns_pis_ipsccomp",
- "wpn_fps_upg_ns_ass_filter",
- "wpn_fps_upg_ns_pis_jungle",
- "wpn_fps_upg_ns_pis_medium_gem",
- "wpn_fps_upg_ns_pis_large_kac",
- "wpn_fps_upg_ns_pis_small",
- "wpn_fps_upg_ns_pis_medium",
- "wpn_fps_upg_ns_pis_large",
- "wpn_fps_upg_ns_pis_medium_slim"
-})
-table.list_append(self.wpn_fps_pis_rsh12.uses_parts, {
- -- "wpn_fps_upg_ns_pis_meatgrinder",
- -- "wpn_fps_upg_ns_pis_ipsccomp",
- -- "wpn_fps_upg_ns_ass_filter",
- -- "wpn_fps_upg_ns_pis_jungle",
- -- "wpn_fps_upg_ns_pis_medium_gem",
- -- "wpn_fps_upg_ns_pis_large_kac",
- -- "wpn_fps_upg_ns_pis_small",
- -- "wpn_fps_upg_ns_pis_medium",
- -- "wpn_fps_upg_ns_pis_large",
- -- "wpn_fps_upg_ns_pis_medium_slim"
-})
-table.list_append(self.wpn_fps_pis_x_rage.uses_parts, {
- "wpn_fps_upg_ns_pis_meatgrinder",
- "wpn_fps_upg_ns_pis_ipsccomp",
- "wpn_fps_upg_ns_ass_filter",
- "wpn_fps_upg_ns_pis_jungle",
- "wpn_fps_upg_ns_pis_medium_gem",
- "wpn_fps_upg_ns_pis_large_kac",
- "wpn_fps_upg_ns_pis_small",
- "wpn_fps_upg_ns_pis_medium",
- "wpn_fps_upg_ns_pis_large",
- "wpn_fps_upg_ns_pis_medium_slim"
-})
 --Brenner
 table.list_append(self.wpn_fps_lmg_hk21.uses_parts, {
  "wpn_fps_ass_g3_g_sniper",
@@ -375,24 +329,16 @@ table.list_append(self.wpn_fps_lmg_hk21.uses_parts, {
  "wpn_fps_smg_mp5_s_adjust"
 })
 -- Jacket's Piece
-table.list_append(self.wpn_fps_smg_x_cobray.uses_parts, {
- "wpn_fps_smg_cobray_s_m4adapter"
-})
+table.list_append(self.wpn_fps_smg_x_cobray.uses_parts, {"wpn_fps_smg_cobray_s_m4adapter"})
 -- Thompson 1928
-table.list_append(self.wpn_fps_smg_thompson.uses_parts, {
- "wpn_fps_smg_cobray_s_m4adapter"
-})
+table.list_append(self.wpn_fps_smg_thompson.uses_parts, {"wpn_fps_smg_cobray_s_m4adapter"})
 table.list_append(self.wpn_fps_smg_x_m1928.uses_parts, {
  "wpn_fps_smg_thompson_stock_discrete",
  "wpn_fps_smg_cobray_s_m4adapter"
 })
 -- Mac 10
-table.list_append(self.wpn_fps_smg_mac10.uses_parts, {
- "wpn_fps_smg_cobray_s_m4adapter"
-})
-table.list_append(self.wpn_fps_smg_x_mac10.uses_parts, {
- "wpn_fps_smg_cobray_s_m4adapter"
-})
+table.list_append(self.wpn_fps_smg_mac10.uses_parts, {"wpn_fps_smg_cobray_s_m4adapter"})
+table.list_append(self.wpn_fps_smg_x_mac10.uses_parts, {"wpn_fps_smg_cobray_s_m4adapter"})
 -- Micro Uzi
 table.list_append(self.wpn_fps_smg_x_baka.uses_parts, {
  "wpn_fps_smg_baka_s_standard",
@@ -487,14 +433,14 @@ for y, large_sights in ipairs(pm9_o) do
 	table.insert(self.wpn_fps_smg_pm9.adds[large_sights], "wpn_fps_smg_erma_extra_rail") 
 end
 for y, part_id in ipairs(ar_gadgets) do 
-table.list_append(self.wpn_fps_smg_pm9.uses_parts, { part_id })
-table.list_append(self.wpn_fps_smg_x_pm9.uses_parts, { part_id })
-self.wpn_fps_smg_pm9.adds[part_id] = self.wpn_fps_smg_pm9.adds[part_id] or {}
-self.wpn_fps_smg_pm9.adds[part_id] = {"wpn_fps_smg_pm9_fl_adapter"}
-self.wpn_fps_smg_pm9.override[part_id] = {a_obj = "a_fl2"}
-self.wpn_fps_smg_x_pm9.adds[part_id] = self.wpn_fps_smg_pm9.adds[part_id] or {}
-self.wpn_fps_smg_x_pm9.adds[part_id] = {"wpn_fps_smg_pm9_fl_adapter"}
-self.wpn_fps_smg_x_pm9.override[part_id] = {a_obj = "a_fl2"}
+	table.list_append(self.wpn_fps_smg_pm9.uses_parts, { part_id })
+	table.list_append(self.wpn_fps_smg_x_pm9.uses_parts, { part_id })
+	self.wpn_fps_smg_pm9.adds[part_id] = self.wpn_fps_smg_pm9.adds[part_id] or {}
+	self.wpn_fps_smg_pm9.adds[part_id] = {"wpn_fps_smg_pm9_fl_adapter"}
+	self.wpn_fps_smg_pm9.override[part_id] = {a_obj = "a_fl2"}
+	self.wpn_fps_smg_x_pm9.adds[part_id] = self.wpn_fps_smg_pm9.adds[part_id] or {}
+	self.wpn_fps_smg_x_pm9.adds[part_id] = {"wpn_fps_smg_pm9_fl_adapter"}
+	self.wpn_fps_smg_x_pm9.override[part_id] = {a_obj = "a_fl2"}
 end
 self.parts.wpn_fps_smg_pm9_body_standard.forbids = {"wpn_fps_addon_ris"}
 
@@ -520,56 +466,21 @@ table.list_append(self[pis_seed].uses_parts, {"wpn_fps_upg_pis_ns_flash"})
 end
 
 -- Custom Akimbos
-table.list_append(self.wpn_fps_ass_x_ak74.uses_parts, {
- "wpn_fps_lmg_rpk_s_standard"
-})
-table.list_append(self.wpn_fps_ass_x_akm.uses_parts, {
- "wpn_fps_lmg_rpk_s_standard"
-})
-table.list_append(self.wpn_fps_ass_x_akm_gold.uses_parts, {
- "wpn_fps_lmg_rpk_s_standard"
-})
-table.list_append(self.wpn_fps_lmg_x_rpk.uses_parts, {
- "wpn_upg_ak_fg_combo3",
- "wpn_fps_upg_ak_fg_tapco",
- "wpn_fps_upg_ak_fg_krebs",
- "wpn_fps_upg_ak_fg_trax",
- "wpn_fps_upg_fg_midwest"
-})
+table.list_append(self.wpn_fps_ass_x_ak74.uses_parts, { "wpn_fps_lmg_rpk_s_standard"})
+table.list_append(self.wpn_fps_ass_x_akm.uses_parts, { "wpn_fps_lmg_rpk_s_standard"})
+table.list_append(self.wpn_fps_ass_x_akm_gold.uses_parts, { "wpn_fps_lmg_rpk_s_standard"})
+table.list_append(self.wpn_fps_lmg_x_rpk.uses_parts, { "wpn_upg_ak_fg_combo3", "wpn_fps_upg_ak_fg_tapco", "wpn_fps_upg_ak_fg_krebs", "wpn_fps_upg_ak_fg_trax", "wpn_fps_upg_fg_midwest"})
 table.list_append(self.wpn_fps_smg_x_416.uses_parts, {
- "wpn_fps_upg_m4_s_standard",
- "wpn_fps_m4_uupg_fg_rail",
- "wpn_fps_m4_uupg_fg_lr300",
- "wpn_fps_upg_fg_jp",
- "wpn_fps_upg_fg_smr",
- "wpn_fps_upg_ass_m4_fg_moe",
- "wpn_fps_upg_ass_m4_fg_lvoa",
- "wpn_fps_upg_ass_m4_upper_reciever_ballos",
- "wpn_fps_upg_ass_m4_upper_reciever_core",
  "wpn_fps_upg_ass_m4_lower_reciever_core",
- "wpn_fps_m4_upper_reciever_edge",
- "wpn_fps_m4_uupg_draghandle_ballos",
- "wpn_fps_m4_uupg_draghandle_core"
+ "wpn_fps_m4_uupg_lower_radian"
 })
+table.list_append(self.wpn_fps_smg_x_416.uses_parts, {"wpn_fps_m4_uupg_m_std_vanilla"})
 table.list_append(self.wpn_fps_ass_x_amcar.uses_parts, {
- "wpn_fps_m4_uupg_s_fold",
- "wpn_fps_upg_ass_m4_upper_reciever_ballos",
- "wpn_fps_upg_ass_m4_upper_reciever_core",
- "wpn_fps_upg_ass_m4_lower_reciever_core",
- "wpn_fps_m4_upper_reciever_edge",
- "wpn_fps_m4_uupg_fg_rail",
- "wpn_fps_m4_uupg_fg_lr300",
- "wpn_fps_upg_fg_jp",
- "wpn_fps_upg_fg_smr",
- "wpn_fps_upg_ass_m4_fg_moe",
- "wpn_fps_upg_ass_m4_fg_lvoa",
- "wpn_fps_smg_olympic_s_short",
  "wpn_fps_m4_upg_b_long",
  "wpn_fps_m4_upg_b_short",
  "wpn_fps_m4_upg_b_sd",
- "wpn_fps_m16_fg_railed",
- "wpn_fps_m16_fg_vietnam",
- "wpn_fps_upg_ass_m16_fg_stag"
+ "wpn_fps_upg_ass_m4_lower_reciever_core",
+ "wpn_fps_m4_uupg_lower_radian"
 })
 
 local no_stock = {

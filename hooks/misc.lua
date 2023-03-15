@@ -456,7 +456,7 @@ self.parts.wpn_fps_ass_l85a2_m_emag.override = {
 		unit = "units/pd2_dlc_clover/weapons/wpn_fps_ass_l85a2_pts/wpn_fps_ass_l85a2_m_emag"
 	}			
 }
-self.parts.wpn_upg_ak_fg_combo4.stats = {recoil = 1}
+self.parts.wpn_upg_ak_fg_combo4.stats = {spread = 1}
 self.wpn_fps_ass_g36.override.wpn_fps_upg_o_leupold = {	stance_mod = { wpn_fps_ass_g36 = { translation = Vector3(0.0, -24, -3.76)}}}	
 self.wpn_fps_ass_m14.override.wpn_fps_upg_o_leupold = { stance_mod = { wpn_fps_ass_m14 = { translation = Vector3(0.01, -36.3, -4.745)}}}
 self.wpn_fps_ass_m14.override.wpn_fps_upg_o_45iron = { stance_mod = { wpn_fps_ass_m14 = { translation = Vector3(-2.05, 0, -13.85),rotation = Rotation(0.3, -0.3, -45)}}}	
@@ -473,8 +473,4 @@ self.wpn_fps_pis_x_shrew.override.wpn_fps_pis_1911_co_1 = {parent = "barrel", a_
 self.wpn_fps_pis_x_shrew.override.wpn_fps_pis_1911_co_2 = {parent = "barrel", a_obj = "a_ns"}
 self.wpn_fps_smg_x_m1928.override.wpn_fps_smg_thompson_stock_discrete = {stats = {recoil = 1, concealment = -1}}
 self.wpn_fps_sho_m590.override.wpn_fps_shot_r870_fg_wood      = { a_obj = "a_fg_2" }
--- table.list_append(self.wpn_fps_smg_akmsu.uses_parts, {"wpn_fps_upg_ak_b_ak105", "wpn_fps_upg_ak_b_draco"})
--- if not self.parts.wpn_fps_upg_ak_b_ak105.override then self.parts.wpn_fps_upg_ak_b_ak105.override = {} end
--- self.parts.wpn_fps_upg_ak_b_ak105.override.wpn_fps_smg_akmsu_body_lowerreceiver = {unit = "wpn_fps_ass_ak_body_lowerreceiver"}
-end )                              
--- end
+end )

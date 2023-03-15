@@ -4,12 +4,13 @@ local m4_grips = EAC.m4_grips
 local m4_stocks = EAC.m4_stocks
 local m4_butt = EAC.m4_butt
 local m4_fg = EAC.m4_fg
+local m4_mags = EAC.m4_mags
+local m4_ur = EAC.m4_ur
 local ak_stocks = EAC.ak_stocks
 local ak_grips = EAC.ak_grips
 local ak_fg = EAC.ak_fg
 local ar_sights = EAC.ar_sights
 local ar_gadgets = EAC.ar_gadgets
-local m4_mags = EAC.m4_mags
 
 local m4_g_seed = {
 "wpn_fps_lmg_m249",
@@ -157,7 +158,7 @@ for k, wpn_id in pairs(self) do
 		for r, fg_ad in ipairs(ak_fg) do
 			if table.contains(self[k].uses_parts, "wpn_upg_ak_fg_combo2") and not table.contains(self[k].uses_parts, fg_ad) then
 				table.insert(self[k].uses_parts, fg_ad)
-				log(tostring(k) .." has received the AK foregrip ".. tostring(fg_ad))
+				-- log(tostring(k) .." has received the AK foregrip ".. tostring(fg_ad))
 			end
 		end
 	end
@@ -204,45 +205,18 @@ table.list_append(self.wpn_fps_smg_x_mp5.uses_parts, {
 	"wpn_fps_smg_x_mp5_s_solid"
 })
 --AK Family Rifles
--- table.list_append(self.wpn_fps_ass_74.uses_parts, {
-	-- "wpn_fps_lmg_rpk_fg_standard",
-	-- "wpn_fps_lmg_rpk_fg_combo1"
--- })
--- table.list_append(self.wpn_fps_ass_akm.uses_parts, {
-	-- "wpn_fps_lmg_rpk_fg_standard",
-	-- "wpn_fps_lmg_rpk_fg_combo1"
--- })
--- table.list_append(self.wpn_fps_ass_akm_gold.uses_parts, {
- -- "wpn_fps_lmg_rpk_fg_standard",
- -- "wpn_fps_lmg_rpk_fg_combo1"
--- })
 --RPK
 table.list_append(self.wpn_fps_lmg_rpk.uses_parts, {
  "wpn_fps_upg_rpk_b_ak105",
  "wpn_fps_upg_ak_body_upperreceiver_zenitco",
  "wpn_fps_upg_rpk_b_zastava"
 })
---IZHMA
--- table.list_append(self.wpn_fps_shot_saiga.uses_parts, {
- -- "wpn_fps_lmg_rpk_fg_combo1",
- -- "wpn_upg_ak_fg_combo2",
- -- "wpn_upg_ak_fg_combo3",
- -- "wpn_fps_upg_ak_fg_tapco",
- -- "wpn_fps_upg_ak_fg_krebs",
- -- "wpn_fps_upg_ak_fg_trax",
- -- "wpn_fps_upg_fg_midwest",
- -- "wpn_fps_lmg_rpk_fg_standard",
--- })
 --JP36
 table.list_append(self.wpn_fps_ass_g36.uses_parts, {
  "wpn_fps_upg_o_leupold",
  "wpn_fps_snp_msr_ns_suppressor"
 })
 
---Parabellum
-table.list_append(self.wpn_fps_pis_breech.uses_parts, {
-	"wpn_fps_upg_pis_ns_flash"
-})
 --AUG
 table.list_append(self.wpn_fps_ass_aug.uses_parts, {
  "wpn_fps_ass_l85a2_m_emag",
@@ -279,22 +253,24 @@ for i, wpn in ipairs(rif) do
 			if (string.match(wpn, "contraband") or string.match(wpn, "tecci")) then
 				if not string.match(fg, "vietnam") then
 					table.insert(self[wpn].uses_parts, fg)
+				-- log(tostring(wpn) .." has received the M4 foregrip ".. tostring(fg))
 				else
 				end
 			else			
 				table.insert(self[wpn].uses_parts, fg)
+				-- log(tostring(wpn) .." has received the M4 foregrip ".. tostring(fg))
 			end
 		end 
-	end 
+	end
+	for k, ur in ipairs(m4_ur) do
+		if not (string.match(wpn, "contraband") or string.match(wpn, "tti")) then
+			if not table.contains(self[wpn].uses_parts, ur) then 
+				table.insert(self[wpn].uses_parts, ur) 
+				-- log(tostring(wpn) .." has received the M4 uppeer receiver ".. tostring(ur))
+			end
+		end
+	end
 end
-table.list_append(self.wpn_fps_snp_tti.uses_parts, {
- "wpn_fps_m4_upper_reciever_edge",
- "wpn_fps_upg_ass_m4_upper_reciever_ballos",
- "wpn_fps_m4_uupg_draghandle_ballos",
- "wpn_fps_upg_ass_m4_upper_reciever_core",
- "wpn_fps_m4_uupg_draghandle_core",
- "wpn_fps_m4_uupg_upper_radian"
-})
 table.list_append(self.wpn_fps_snp_victor.uses_parts, {
  "wpn_fps_m4_upper_reciever_edge",
  "wpn_fps_upg_ass_m4_upper_reciever_ballos",
@@ -320,7 +296,6 @@ table.list_append(self.wpn_fps_smg_olympic.uses_parts, {
  "wpn_fps_m4_upg_b_sd"
 })
 table.list_append(self.wpn_fps_smg_x_olympic.uses_parts, {
- "wpn_fps_m4_uupg_s_fold",
  "wpn_fps_m4_upg_b_long",
  "wpn_fps_m4_upg_b_sd"
 })
@@ -524,6 +499,8 @@ end
 table.list_append(self.wpn_fps_sho_x_sko12.uses_parts, {"wpn_fps_sho_sko12_s_adapter"})
 self.parts.wpn_fps_smg_pm9_body_standard.forbids = {"wpn_fps_addon_ris"}
 
+--Parabellum
+table.list_append(self.wpn_fps_pis_breech.uses_parts, {"wpn_fps_upg_pis_ns_flash"})
 table.list_append(self.wpn_fps_pis_peacemaker.uses_parts, {"wpn_fps_upg_pis_ns_flash"})
 table.list_append(self.wpn_fps_pis_2006m.uses_parts     , {"wpn_fps_upg_pis_ns_flash"})
 table.list_append(self.wpn_fps_pis_chinchilla.uses_parts, {"wpn_fps_upg_pis_ns_flash"})

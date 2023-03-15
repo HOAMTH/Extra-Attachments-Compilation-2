@@ -1,0 +1,11 @@
+<dynamic_object>
+    <diesel materials="units/mods/weapons/wpn_fps_ass_flint_s_adapter/wpn_fps_ass_flint_s_adapter" orientation_object="rp_wpn_upg_ak_s_adapter" />
+    <animations>
+        <animation_group name="anim_grp0" >
+            <object enabled="true" name="a_s_m4" />
+        </animation_group>
+    </animations>
+    <graphics>
+        <object enabled="true" name="g_adapter" />
+    </graphics>
+</dynamic_object>

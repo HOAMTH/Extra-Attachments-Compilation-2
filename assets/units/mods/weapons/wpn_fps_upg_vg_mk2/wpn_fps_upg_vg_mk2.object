@@ -1,0 +1,6 @@
+<dynamic_object>
+    <diesel materials="units/mods/weapons/wpn_fps_upg_vg_mk2/wpn_fps_upg_vg_mk2" orientation_object="rp_vertical_grip" />
+    <graphics>
+        <object name="g_vertical_grip" enabled="true" />
+    </graphics>
+</dynamic_object>

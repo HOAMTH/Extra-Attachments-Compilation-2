@@ -1,0 +1,7 @@
+<dynamic_object>
+    <diesel orientation_object="rp_wpn_fps_smg_uzi_b_suppressed" materials="units/pd2_dlc_miami/weapons/wpn_fps_smg_uzi_pts/wpn_fps_smg_uzi_b_suppressed"/>
+    <graphics>
+        <object enabled="false" name="g_barrel_lod0"/>
+        <object enabled="true" name="g_suppressor_lod0"/>
+    </graphics>
+</dynamic_object>

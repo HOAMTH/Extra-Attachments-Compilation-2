@@ -1,0 +1,6 @@
+<materials version="3" group="weapon_slap">
+	<material name="mat_gre_vg" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:NORMALMAP_UV1" version="2">
+		<diffuse_texture file="units/pd2_dlc_fgl/weapons/wpn_fps_gre_slap_pts/wpn_fps_gre_slap_vg_standard_df" mip="1"/>
+		<bump_normal_texture file="units/pd2_dlc_fgl/weapons/wpn_fps_gre_slap_pts/wpn_fps_gre_slap_vg_standard_nm"  mip="1"/>
+	</material>
+</materials>

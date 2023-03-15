@@ -1,0 +1,21 @@
+<dynamic_object>
+    <diesel materials="units/mods/weapons/wpn_fps_pis_g17_b_short/wpn_fps_pis_g17_b_short" orientation_object="rp_wpn_fps_pis_g17_b_standard"/>
+    <animations>
+		<animation_group name="reload">
+			<object name="anim_bolt_reload" enabled="true" />
+		</animation_group>
+		<animation_group name="reload_right">
+			<object name="anim_bolt_reload_right" enabled="true" />
+		</animation_group>
+		<animation_group name="reload_left">
+			<object name="anim_bolt_reload_left" enabled="true" />
+		</animation_group>
+		<animation_group name="recoil">
+			<object name="anim_bolt_recoil" enabled="true" />
+		</animation_group>
+    </animations>
+	<graphics>
+        <object enabled="true" name="g_slide" />
+        <object  name="g_no_blurr" enabled="true" />
+    </graphics>
+</dynamic_object>

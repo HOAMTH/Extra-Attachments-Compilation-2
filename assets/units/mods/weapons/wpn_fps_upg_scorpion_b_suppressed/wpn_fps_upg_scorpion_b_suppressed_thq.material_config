@@ -1,0 +1,6 @@
+<materials version="3" group="weapon_group">
+    <material name="stubby" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:NORMALMAP_UV1" version="2">
+        <diffuse_texture file="units/pd2_dlc_miami/weapons/wpn_fps_smg_scorpion_pts/supp_df" mip="1"/>
+        <bump_normal_texture file="units/pd2_dlc_miami/weapons/wpn_fps_smg_scorpion_pts/supp" mip="1"/>
+    </material>	
+</materials>

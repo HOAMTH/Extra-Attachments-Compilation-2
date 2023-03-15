@@ -1,0 +1,16 @@
+<dynamic_object>
+    <diesel materials="units/payday2/weapons/wpn_fps_smg_mp9_pts/wpn_fps_smg_mp9_body_mp9" orientation_object="rp_wpn_fps_smg_mp9_body_mp9"/>
+	<animations>
+		<animation_group name="reload">
+			<object name="anim_bolt" enabled="true"/>
+			<object name="anim_ejection" enabled="true"/>
+		</animation_group>
+	</animations>
+    <graphics>
+        <object name="g_body_lod0" enabled="true"/>
+        <object name="g_ejection" enabled="true"/>
+        <object name="g_stubby_lod0" enabled="false"/>
+        <object name="g_charging_handle_lod0" enabled="true"/>
+        <object name="g_no_blurr" enabled="true"/>
+    </graphics>
+</dynamic_object>

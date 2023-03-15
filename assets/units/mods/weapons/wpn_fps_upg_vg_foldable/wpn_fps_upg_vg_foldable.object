@@ -1,0 +1,6 @@
+<dynamic_object>
+	<diesel materials="units/mods/weapons/wpn_fps_upg_vg_foldable/wpn_fps_upg_vg_foldable" orientation_object="rp_wpn_fps_gre_slap_vg_standard" />
+	<graphics>
+		<object name="g_vertical" enabled="true" />
+	</graphics>
+</dynamic_object>

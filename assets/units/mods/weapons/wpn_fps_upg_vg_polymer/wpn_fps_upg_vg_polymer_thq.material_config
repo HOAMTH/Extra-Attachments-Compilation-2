@@ -1,0 +1,6 @@
+<materials version="3" group="weapon_group">
+    <material name="mtr_vertical_grip" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:NORMALMAP_UV1" version="2">
+        <diffuse_texture     file="units/pd2_dlc_turtles/weapons/wpn_fps_smg_polymer_pts/wpn_fps_smg_polymer_fg_standard_df" mip="1"/>
+        <bump_normal_texture file="units/pd2_dlc_turtles/weapons/wpn_fps_smg_polymer_pts/wpn_fps_smg_polymer_fg_standard_nm" mip="1"/>
+    </material>	
+</materials>

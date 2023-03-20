@@ -2,7 +2,7 @@
 	<Localization directory="loc" default="en.txt">
 	</Localization>
 	<!-- <AssetUpdates id="21649" name="asset_updates" folder_name="Extra Attachments Compilation+-" version="1.051" provider="modworkshop"/> -->
-	<AssetUpdates id="HOAMTH/Extra-Attachments-Compilation-2" provider="github" branch="main"/>
+	<AssetUpdates id="HOAMTH/Extra-Attachments-Compilation-2" provider="github" release="true" version="2.0"/>
 	<GlobalValue id="EAC±" color="Color(0, 0.8, 0.8)"/> 
 	
 	<WeaponMod id="wpn_fps_upg_vg_adjust" based_on="wpn_fps_pis_deagle_o_standard_rear" type="extra" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" name_id = "stance_adjust" texture_bundle_folder="mods" is_a_unlockable="true" hidden="true">

@@ -214,7 +214,6 @@ for n, wpns in ipairs(smaller_clip_wpns) do
 	self[wpns].override.wpn_fps_ass_upg_m4_m_drum.stats = deep_clone(self.parts.wpn_fps_ass_upg_m4_m_drum.stats)
 	if self[wpns].override.wpn_fps_ass_upg_m4_m_drum.stats.extra_ammo then self[wpns].override.wpn_fps_ass_upg_m4_m_drum.stats.extra_ammo = (self.parts.wpn_fps_ass_upg_m4_m_drum.stats.extra_ammo + offset) * multiplier end
 end
-end
 -- G3
 self.wpn_fps_ass_g3.adds.wpn_fps_upg_o_leupold = {"wpn_fps_ass_g3_body_rail"}
 self.wpn_fps_ass_g3.adds.wpn_fps_upg_o_45iron  = {"wpn_fps_ass_g3_body_rail"}
@@ -225,7 +224,7 @@ self.parts.wpn_fps_ass_g3_sniper_kit.perks = {"fire_mode_single"}
 self.parts.wpn_fps_ass_g3_sniper_kit.forbids = {"wpn_fps_ass_g3_b_sniper", "wpn_fps_ass_g3_b_short"}
 self.parts.wpn_fps_ass_g3_b_sniper.forbids = {"wpn_fps_ass_g3_sniper_kit"}
 table.insert(self.parts.wpn_fps_ass_g3_b_short.forbids, "wpn_fps_ass_g3_sniper_kit")
-self.parts.wpn_fps_ass_g3_sniper_kit.override_weapon = {categories = { "snp" }}
+self.parts.wpn_fps_ass_g3_sniper_kit.override_weapon = {categories = { "snp" }, stats_modifiers = {damage = 3}}
 self.wpn_fps_lmg_hk21.override.wpn_fps_ass_g3_s_sniper = {a_obj = "a_s_g3"}
 self.wpn_fps_lmg_hk21.override.wpn_fps_ass_g3_s_wood   = {a_obj = "a_s_g3"}
 -- Tecci

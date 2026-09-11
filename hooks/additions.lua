@@ -119,6 +119,7 @@ for f, wpn in ipairs(ak_fg_seed) do
 end
 
 	table.list_append(self.wpn_fps_ass_tecci.uses_parts, {"wpn_fps_m4_uupg_m_std_vanilla"})
+	table.list_append(self.wpn_fps_ass_famas.uses_parts, {"wpn_fps_m4_uupg_m_std_vanilla"})
 
 for k, wpn_id in pairs(self) do
 	if self[k] and self[k].default_blueprint and not (string.match(k, "_npc") or string.match(k, "_primary") or string.match(k, "parts") or string.match(k, "aaaaa") or string.match(k, "_secondary") and not string.match(k, "saw_secondary")) then

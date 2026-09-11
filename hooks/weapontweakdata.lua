@@ -537,7 +537,14 @@ table.list_append(self.famas.attachment_points, {{
 			base_a_obj = "a_b", 
 			position = Vector3( 0, -13, -3.7 ), 
 			rotation = RotationCAP( 180, 0, 90 ) 
-		}})	
+		},
+		{
+			name = "a_m_m4",
+			base_a_obj = "a_m",    
+			position = Vector3(0, 0, 6),
+			rotation = Rotation(0, 0, 0)
+		}
+	})	
 table.list_append(self.x_s552.attachment_points, {{
 			name = "a_vg_rail", 
 			base_a_obj = "a_vg", 

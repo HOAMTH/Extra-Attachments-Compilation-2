@@ -142,8 +142,10 @@ for k, wpn_id in pairs(self) do
 			end
 		end
 		for o, mag_ad in ipairs(m4_mags) do
-			if table.contains(self[k].uses_parts, "wpn_fps_m4_uupg_m_std_vanilla") and not table.contains(self[k].uses_parts, mag_ad) then
-				table.insert(self[k].uses_parts, mag_ad)
+			if table.contains(self[k].uses_parts, "wpn_fps_m4_uupg_m_std_vanilla") 
+				and not table.contains(self[k].uses_parts, mag_ad)
+				and not ((k == "wpn_fps_ass_tecci") and (mag_ad == "wpn_fps_ass_upg_m4_m_drum")) then
+					table.insert(self[k].uses_parts, mag_ad)
 				-- log(tostring(k) .." has received M4 magazine ".. tostring(mag_ad))
 			end
 		end
@@ -278,7 +280,7 @@ for i, wpn in ipairs(rif) do
 			if not (string.match(wpn, "contraband") or string.match(wpn, "tti")) then
 				if not table.contains(self[wpn].uses_parts, ur) then 
 					table.insert(self[wpn].uses_parts, ur) 
-					log(tostring(wpn) .." has received the M4 upper receiver ".. tostring(ur))
+					--log(tostring(wpn) .." has received the M4 upper receiver ".. tostring(ur))
 				end
 			end
 		end

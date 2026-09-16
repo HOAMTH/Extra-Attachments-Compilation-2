@@ -430,7 +430,11 @@ for z, part_id in ipairs(ar_sights) do
 	if not self.wpn_fps_smg_pm9.adds[part_id] then self.wpn_fps_smg_pm9.adds[part_id] = {"wpn_fps_smg_pm9_o_adapter"} end
 end
 for y, large_sights in ipairs(pm9_o) do
-	table.insert(self.wpn_fps_smg_pm9.adds[large_sights], "wpn_fps_smg_erma_extra_rail") 
+	-- FIX: not every sight in pm9_o is guaranteed to end up in EAC.ar_sights (depends on
+	-- installed DLCs / whether pcs is set) - default it defensively like the line above,
+	-- instead of calling table.insert on a possibly nil value.
+	self.wpn_fps_smg_pm9.adds[large_sights] = self.wpn_fps_smg_pm9.adds[large_sights] or {"wpn_fps_smg_pm9_o_adapter"}
+	table.insert(self.wpn_fps_smg_pm9.adds[large_sights], "wpn_fps_smg_erma_extra_rail")
 end
 for y, part_id in ipairs(ar_gadgets) do 
 	table.list_append(self.wpn_fps_smg_pm9.uses_parts, { part_id })

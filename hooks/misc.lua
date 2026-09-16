@@ -43,7 +43,6 @@ end
 
 self.wpn_fps_ass_amcar.override.wpn_fps_m4_upg_b_sd = {a_obj = "a_b_sd"}
 self.wpn_fps_ass_x_amcar.override.wpn_fps_m4_upg_b_sd = {a_obj = "a_b_sd"}
-self.wpn_fps_smg_x_olympic.override.wpn_fps_m4_upg_b_sd = {a_obj = "a_b_sd"}
 self.wpn_fps_smg_olympic.override.wpn_fps_m4_upg_b_sd = {a_obj = "a_b_sd"}
 self.wpn_fps_snp_tti.override.wpn_fps_snp_tti_vg_standard = {a_obj = "a_vg_vanilla"}
 -- Northstar
@@ -151,6 +150,9 @@ self.wpn_fps_ass_asval.override = {
 self.parts.wpn_fps_upg_rpk_b_zastava.stats = {damage = 0, recoil = 1, spread = 1, concealment = -1}
 self.parts.wpn_fps_upg_rpk_b_zastava.override.wpn_fps_ak_extra_ris = {a_obj = "a_fl_eac"}
 table.insert(self.parts.wpn_fps_upg_rpk_b_zastava.forbids, "wpn_fps_upg_bp_lmg_lionbipod")
+-- Restore Zastava visuals (mesh + attach points) after cloning from ak105 for sound
+self.parts.wpn_fps_upg_rpk_b_zastava.unit = self.parts.wpn_fps_upg_ass_ak_b_zastava.unit
+self.parts.wpn_fps_upg_rpk_b_zastava.a_obj = self.parts.wpn_fps_upg_ass_ak_b_zastava.a_obj
 
 self.parts.wpn_fps_upg_rpk_b_ak105.stats = {damage = -5, recoil = -2, spread = -2, concealment = 4}
 self.parts.wpn_fps_upg_rpk_b_ak105.override.wpn_fps_ak_extra_ris = {a_obj = "a_fl_eac"}
@@ -224,7 +226,7 @@ self.parts.wpn_fps_ass_g3_sniper_kit.perks = {"fire_mode_single"}
 self.parts.wpn_fps_ass_g3_sniper_kit.forbids = {"wpn_fps_ass_g3_b_sniper", "wpn_fps_ass_g3_b_short"}
 self.parts.wpn_fps_ass_g3_b_sniper.forbids = {"wpn_fps_ass_g3_sniper_kit"}
 table.insert(self.parts.wpn_fps_ass_g3_b_short.forbids, "wpn_fps_ass_g3_sniper_kit")
-self.parts.wpn_fps_ass_g3_sniper_kit.override_weapon = {categories = { "snp" }, stats_modifiers = {damage = 3}}
+self.parts.wpn_fps_ass_g3_sniper_kit.override_weapon = {categories = { "snp" }}
 self.wpn_fps_lmg_hk21.override.wpn_fps_ass_g3_s_sniper = {a_obj = "a_s_g3"}
 self.wpn_fps_lmg_hk21.override.wpn_fps_ass_g3_s_wood   = {a_obj = "a_s_g3"}
 -- Tecci
@@ -234,6 +236,7 @@ local M4_ur = {
 "wpn_fps_upg_ass_m4_upper_reciever_ballos",
 "wpn_fps_m4_uupg_upper_radian"
 }
+
 for u, ur_id in ipairs(M4_ur) do self.wpn_fps_ass_tecci.adds[ur_id] = {"wpn_fps_smg_erma_extra_rail", "wpn_fps_amcar_bolt_standard"}
 	if self.parts[ur_id].override.wpn_fps_m4_uupg_draghandle then
 		self.parts[ur_id].override.wpn_fps_ass_tecci_dh_standard = deep_clone(self.parts[ur_id].override.wpn_fps_m4_uupg_draghandle)
@@ -242,13 +245,18 @@ for u, ur_id in ipairs(M4_ur) do self.wpn_fps_ass_tecci.adds[ur_id] = {"wpn_fps_
 	end
 end
 for w, mags in ipairs(m4_mags) do
-self.wpn_fps_ass_tecci.override[mags] = {
-	animations = {
-		reload_not_empty = "reload_not_empty",
-		reload = "reload"
+	local offset = -35
+	self.wpn_fps_ass_tecci.override[mags] = self.wpn_fps_ass_tecci.override[mags] or {}
+	self.wpn_fps_ass_tecci.override[mags].stats = deep_clone(self.parts[mags].stats)
+	if self.wpn_fps_ass_tecci.override[mags].stats.extra_ammo then self.wpn_fps_ass_tecci.override[mags].stats.extra_ammo = (self.parts[mags].stats.extra_ammo + offset) end
+	
+	self.wpn_fps_ass_tecci.override[mags].animations = {
+			reload_not_empty = "reload_not_empty",
+			reload = "reload"
 	}
-}
+	self.wpn_fps_ass_tecci.override[mags].stats.concealment = (self.wpn_fps_ass_tecci.override[mags].stats.concealment or 0) + 5
 end
+
 -- M4 FGs
 local smol_bd = {
 "wpn_fps_m16_fg_vietnam",

@@ -67,7 +67,8 @@
 	<WeaponMod id="wpn_fps_m4_upg_b_short" based_on="wpn_fps_m4_uupg_b_short" is_a_unlockable="true" texture_bundle_folder="mods"/>
 	<WeaponMod id="wpn_fps_m4_upg_b_sd" based_on="wpn_fps_m4_uupg_b_sd" is_a_unlockable="true" texture_bundle_folder="mods"/>
 	<WeaponMod id="wpn_fps_upg_rpk_b_ak105" based_on="wpn_fps_upg_ak_b_ak105" is_a_unlockable="true" texture_bundle_folder="mods"/>
-	<WeaponMod id="wpn_fps_upg_rpk_b_zastava" based_on="wpn_fps_upg_ass_ak_b_zastava" is_a_unlockable="true" texture_bundle_folder="mods"/>
+	<WeaponMod id="wpn_fps_upg_rpk_b_zastava" based_on="wpn_fps_upg_ak_b_ak105" is_a_unlockable="true" texture_bundle_folder="mods"/>
+	<!-- Zastava barrel is silent on full-auto; ak105 source has correct auto-fire sound, visuals restored in misc.lua -->
 
 	<WeaponMod id="wpn_fps_ass_scar_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
 		<pcs/>

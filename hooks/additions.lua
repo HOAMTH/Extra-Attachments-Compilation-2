@@ -691,4 +691,49 @@ for i, weapon_id in ipairs(vg_flat) do
 	})
 end
 
+local function pistol_gadgets()
+	--Revolver Gadgets
+	local pistol_gadgets = {}
+	local pistol_needing_gadgets = {
+		"wpn_fps_pis_rage",
+		"wpn_fps_pis_breech",
+		"wpn_fps_pis_chinchilla",
+		"wpn_fps_pis_model3",
+		"wpn_fps_pis_peacemaker",
+		"wpn_fps_snp_contender"
+	}
+
+	for _, part_id in pairs(self.wpn_fps_pis_g17.uses_parts or {}) do
+		local part = self.parts[part_id]
+		if part and part.pcs then
+			if part.type == "gadget" then
+				table.insert(pistol_gadgets, part_id)
+			end
+		end
+	end
+	
+	for _, wpn_id in ipairs(pistol_needing_gadgets) do
+		self[wpn_id].override.wpn_fps_shot_r870_gadget_rail = {a_obj = "a_fl_rail"}
+		local w = self[wpn_id]
+		if type(w) == "table" then
+			w.uses_parts = w.uses_parts or {}
+			w.override = w.override or {}
+			w.adds = w.adds or {}
+
+			for _, gadget in ipairs(pistol_gadgets) do
+				if not self[wpn_id].adds[gadget] then self[wpn_id].adds[gadget] = {} end
+				table.list_append(self[wpn_id].adds[gadget], 
+					{"wpn_fps_shot_r870_gadget_rail"})
+				
+				table.insert(w.uses_parts, gadget)
+				w.override[gadget] = {
+					a_obj = "a_fl",
+					parent = false
+				}
+			end
+		end
+	end
+end
+pistol_gadgets()
+
 end)

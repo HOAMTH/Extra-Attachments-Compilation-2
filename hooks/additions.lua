@@ -119,6 +119,7 @@ for f, wpn in ipairs(ak_fg_seed) do
 end
 
 	table.list_append(self.wpn_fps_ass_tecci.uses_parts, {"wpn_fps_m4_uupg_m_std_vanilla"})
+	table.list_append(self.wpn_fps_ass_famas.uses_parts, {"wpn_fps_m4_uupg_m_std_vanilla"})
 
 for k, wpn_id in pairs(self) do
 	if self[k] and self[k].default_blueprint and not (string.match(k, "_npc") or string.match(k, "_primary") or string.match(k, "parts") or string.match(k, "aaaaa") or string.match(k, "_secondary") and not string.match(k, "saw_secondary")) then
@@ -142,8 +143,10 @@ for k, wpn_id in pairs(self) do
 			end
 		end
 		for o, mag_ad in ipairs(m4_mags) do
-			if table.contains(self[k].uses_parts, "wpn_fps_m4_uupg_m_std_vanilla") and not table.contains(self[k].uses_parts, mag_ad) then
-				table.insert(self[k].uses_parts, mag_ad)
+			if table.contains(self[k].uses_parts, "wpn_fps_m4_uupg_m_std_vanilla") 
+				and not table.contains(self[k].uses_parts, mag_ad)
+				and not ((k == "wpn_fps_ass_tecci") and (mag_ad == "wpn_fps_ass_upg_m4_m_drum")) then
+					table.insert(self[k].uses_parts, mag_ad)
 				-- log(tostring(k) .." has received M4 magazine ".. tostring(mag_ad))
 			end
 		end
@@ -278,7 +281,7 @@ for i, wpn in ipairs(rif) do
 			if not (string.match(wpn, "contraband") or string.match(wpn, "tti")) then
 				if not table.contains(self[wpn].uses_parts, ur) then 
 					table.insert(self[wpn].uses_parts, ur) 
-					log(tostring(wpn) .." has received the M4 upper receiver ".. tostring(ur))
+					--log(tostring(wpn) .." has received the M4 upper receiver ".. tostring(ur))
 				end
 			end
 		end
@@ -687,5 +690,50 @@ for i, weapon_id in ipairs(vg_flat) do
 		"wpn_fps_upg_vg_cobra"
 	})
 end
+
+local function pistol_gadgets()
+	--Revolver Gadgets
+	local pistol_gadgets = {}
+	local pistol_needing_gadgets = {
+		"wpn_fps_pis_rage",
+		"wpn_fps_pis_breech",
+		"wpn_fps_pis_chinchilla",
+		"wpn_fps_pis_model3",
+		"wpn_fps_pis_peacemaker",
+		"wpn_fps_snp_contender"
+	}
+
+	for _, part_id in pairs(self.wpn_fps_pis_g17.uses_parts or {}) do
+		local part = self.parts[part_id]
+		if part and part.pcs then
+			if part.type == "gadget" then
+				table.insert(pistol_gadgets, part_id)
+			end
+		end
+	end
+	
+	for _, wpn_id in ipairs(pistol_needing_gadgets) do
+		self[wpn_id].override.wpn_fps_shot_r870_gadget_rail = {a_obj = "a_fl_rail"}
+		local w = self[wpn_id]
+		if type(w) == "table" then
+			w.uses_parts = w.uses_parts or {}
+			w.override = w.override or {}
+			w.adds = w.adds or {}
+
+			for _, gadget in ipairs(pistol_gadgets) do
+				if not self[wpn_id].adds[gadget] then self[wpn_id].adds[gadget] = {} end
+				table.list_append(self[wpn_id].adds[gadget], 
+					{"wpn_fps_shot_r870_gadget_rail"})
+				
+				table.insert(w.uses_parts, gadget)
+				w.override[gadget] = {
+					a_obj = "a_fl",
+					parent = false
+				}
+			end
+		end
+	end
+end
+pistol_gadgets()
 
 end)

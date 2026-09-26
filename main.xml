@@ -338,15 +338,6 @@
 		<bullet_objects amount = "100" prefix = "g_bullet_"/>
 		<weapons>
 			<value_node value = "wpn_fps_ass_amcar"/>
-			<value_node value = "wpn_fps_ass_m4"/>
-			<value_node value = "wpn_fps_ass_m16"/>
-			<value_node value = "wpn_fps_ass_ak5"/>
-			<value_node value = "wpn_fps_ass_l85a2"/>
-			<value_node value = "wpn_fps_ass_corgi"/>
-			<value_node value = "wpn_fps_smg_x_olympic"/>
-			<value_node value = "wpn_fps_smg_olympic"/>
-			<!-- Custom -->	
-			<value_node value = "wpn_fps_ass_x_amcar"/>
 		</weapons>
 	</WeaponMod>
 	<WeaponMod id="wpn_fps_upg_ak_m_drum" based_on="wpn_upg_ak_m_drum" type="magazine" unit="units/pd2_dlc_gage_lmg/weapons/wpn_fps_lmg_rpk_pts/wpn_lmg_rpk_m_drum" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">

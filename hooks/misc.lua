@@ -255,6 +255,14 @@ for w, mags in ipairs(m4_mags) do
 			reload = "reload"
 	}
 	self.wpn_fps_ass_tecci.override[mags].stats.concealment = (self.wpn_fps_ass_tecci.override[mags].stats.concealment or 0) + 5
+
+	self.wpn_fps_ass_famas.override[mags] = {
+		animations = {
+			reload_not_empty = "reload_not_empty",
+			reload = "reload"
+		},
+		a_obj = "a_m_m4"
+	}
 end
 
 -- M4 FGs

@@ -94,6 +94,10 @@ for i, part_ids in pairs(self.wpn_fps_ass_m4.uses_parts) do
 	end
 	
 end
+
+table.insert(EAC.m4_mags, "wpn_fps_ass_upg_m4_m_drum")
+
+--table.insert(EAC.m4_mags, "wpn_fps_upg_ak_m_drum")
 for i, part_ids in pairs(self.wpn_fps_ass_akm.uses_parts) do
 	if self.parts[part_ids].type == "stock" and self.parts[part_ids].pcs and not self.parts[part_ids].adds_type then 
 	-- log(tostring(part_ids) .. " is a AK type stock.")

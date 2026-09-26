@@ -94,12 +94,17 @@ local CAP = {
 "victor",
 "qbu88",
 "new_m14",
-"hk21"
+"hk21",
+-- pistol gadgets
+"new_raging_bull",
+"breech",
+"contender"
 }
 for i, weapon_id in ipairs(CAP) do
 	if not self[weapon_id] then self[weapon_id] = {} end
 	if not self[weapon_id].attachment_points then self[weapon_id].attachment_points = {} end
 end
+
 table.list_append(self.amcar.attachment_points, {{
 			name = "a_b_sd", 
 			base_a_obj = "a_b", 
@@ -537,7 +542,14 @@ table.list_append(self.famas.attachment_points, {{
 			base_a_obj = "a_b", 
 			position = Vector3( 0, -13, -3.7 ), 
 			rotation = RotationCAP( 180, 0, 90 ) 
-		}})	
+		},
+		{
+			name = "a_m_m4",
+			base_a_obj = "a_m",    
+			position = Vector3(0, 0, 6),
+			rotation = Rotation(0, 0, 0)
+		}
+	})	
 table.list_append(self.x_s552.attachment_points, {{
 			name = "a_vg_rail", 
 			base_a_obj = "a_vg", 
@@ -749,6 +761,18 @@ table.list_append(self.model3.attachment_points, {{
 			},
 			position = Vector3( 0, 0, -4.1), 
 			rotation = RotationCAP( 0, 0, 0 ) 
+		},
+		{
+			name = "a_fl_rail", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 3, 0.6), 
+			rotation = RotationCAP( 180, 0, 90 ) 
+		},
+		{
+			name = "a_fl", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 8.5, 1), 
+			rotation = RotationCAP( 0, 0, 0 ) 
 		}})
 table.list_append(self.chinchilla.attachment_points, {{
 			name = "a_sight", 
@@ -760,6 +784,18 @@ table.list_append(self.chinchilla.attachment_points, {{
 			name = "a_sight_d", 
 			base_a_obj = "a_sight",
 			position = Vector3( 0, 4, 0.150), 
+			rotation = RotationCAP( 0, 0, 0 ) 
+		},
+		{
+			name = "a_fl_rail", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 7.5, 0.0), 
+			rotation = RotationCAP( 180, 0, 90 ) 
+		},
+		{
+			name = "a_fl", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 6.5, -2.0), 
 			rotation = RotationCAP( 0, 0, 0 ) 
 		}})
 table.list_append(self.peacemaker.attachment_points, {{
@@ -773,6 +809,18 @@ table.list_append(self.peacemaker.attachment_points, {{
 			base_a_obj = "a_sight",
 			position = Vector3( 0, 5.3, -1.0), 
 			rotation = RotationCAP( 180, 0, 180 ) 
+		},
+		{
+			name = "a_fl_rail", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 1.25, -1.9), 
+			rotation = RotationCAP( 180, 0, 90 ) 
+		},
+		{
+			name = "a_fl", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 7, -1.5), 
+			rotation = RotationCAP( 0, 0, 0 ) 
 		}})
 table.list_append(self.m32.attachment_points, {{
 			name = "a_vg", 
@@ -899,6 +947,45 @@ table.list_append(self.new_m14.attachment_points, {{
 			base_a_obj = "a_vg", 
 			position = Vector3( 0, -7, 0 ), 
 			rotation = Rotation( 180, 0, 90 ) 
+		}})
+table.list_append(self.breech.attachment_points, {
+		{
+			name = "a_fl_rail", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 1, -1.9), 
+			rotation = RotationCAP( 180, 0, 90 ) 
+		},	
+		{
+			name = "a_fl", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 6.75, -1.5), 
+			rotation = RotationCAP( 0, 0, 0 ) 
+		}})
+table.list_append(self.contender.attachment_points, {
+		{
+			name = "a_fl_rail", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 28, 5.6), 
+			rotation = RotationCAP( 180, 0, 90 ) 
+		},	
+		{
+			name = "a_fl", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 33.75, 6), 
+			rotation = RotationCAP( 0, 0, 0 ) 
+		}})
+table.list_append(self.new_raging_bull.attachment_points, {
+		{
+			name = "a_fl_rail", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 4.75, -2.4), 
+			rotation = RotationCAP( 180, 0, 90 ) 
+		},
+		{
+			name = "a_fl", 
+			base_a_obj = "a_b",
+			position = Vector3( 0, 10, -2.0), 
+			rotation = RotationCAP( 0, 0, 0 ) 
 		}})
 self:SetupAttachmentPoint("hk21", {
         name = "a_s_g3", -- Name of Attachment Point ( This can be a preexisting one or a new one. )

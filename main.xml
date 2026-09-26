@@ -70,101 +70,6 @@
 	<WeaponMod id="wpn_fps_upg_rpk_b_zastava" based_on="wpn_fps_upg_ak_b_ak105" is_a_unlockable="true" texture_bundle_folder="mods"/>
 	<!-- Zastava barrel is silent on full-auto; ak105 source has correct auto-fire sound, visuals restored in misc.lua -->
 
-	<WeaponMod id="wpn_fps_ass_scar_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats spread="-3" recoil="3" concealment="5" damage="-40" extra_ammo="5" total_ammo_mod="12"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_scar"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_amcar_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats damage="6" total_ammo_mod="-5"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_amcar"/>
-			<value_node value = "wpn_fps_ass_g36"/>
-			<value_node value = "wpn_fps_ass_s552"/>
-			<!-- Custom -->			
-			<value_node value = "wpn_fps_ass_x_amcar"/>
-			<value_node value = "wpn_fps_ass_x_g36"/>
-			<value_node value = "wpn_fps_ass_x_s552"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_m16_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats damage="-30" total_ammo_mod="13"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_m16"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_akm_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats damage="-30" total_ammo_mod="13"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_akm"/>
-			<value_node value = "wpn_fps_ass_akm_gold"/>
-			<value_node value = "wpn_fps_smg_akmsu"/>
-			<value_node value = "wpn_fps_smg_x_akmsu"/>
-			<value_node value = "wpn_fps_smg_hajk"/>
-			<value_node value = "wpn_fps_smg_x_hajk"/>
-			<value_node value = "wpn_fps_smg_schakal"/>
-			<value_node value = "wpn_fps_smg_x_schakal"/>
-			<value_node value = "wpn_fps_smg_m45"/>
-			<value_node value = "wpn_fps_smg_x_m45"/>
-			<value_node value = "wpn_fps_smg_erma"/>
-			<value_node value = "wpn_fps_smg_x_erma"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_fal_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats damage="-20" total_ammo_mod="4"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_fal"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_flint_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats damage="-20" total_ammo_mod="4"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_flint"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_g36_sniper_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats spread="10" recoil="-10" concealment="-6" damage="64" extra_ammo="-5" total_ammo_mod="-15"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_g36"/>
-			<value_node value = "wpn_fps_ass_famas"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_m14_sniper_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats spread="1" recoil="-4" concealment="-5" extra_ammo="-2" total_ammo_mod="-13" damage="50"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_m14"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_g3_sniper_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats spread="3" recoil="-7" concealment="-6" damage="20" extra_ammo="-5" total_ammo_mod="-12"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_g3"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_contraband_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats spread="-2" recoil="1" concealment="0" damage="-100" extra_ammo="5" total_ammo_mod="20"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_contraband"/>
-		</weapons>
-	</WeaponMod>
-	<WeaponMod id="wpn_fps_ass_sub2000_assault_kit" based_on="wpn_fps_upg_a_custom_free" type="ammo" unit="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
-		<pcs/>
-		<stats spread="-2" recoil="2" concealment="1" damage="-100" extra_ammo="0" total_ammo_mod="20"/>
-		<weapons>
-			<value_node value = "wpn_fps_ass_sub2000"/>
-		</weapons>
-	</WeaponMod>
 	<WeaponMod id="wpn_fps_upg_o_iron" based_on="wpn_fps_m4_uupg_o_flipup" type="sight" unit="units/payday2_cash/safes/buck/weapons/wpn_fps_sho_boot_legendary/wpn_fps_sho_boot_o_legendary" drop="false" texture_bundle_folder="mods" is_a_unlockable="true">
 		<pcs/>
 		<stats recoil="1" zoom="1" concealment="-1" />
@@ -376,17 +281,6 @@
 		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_vg_mk2"                   force="true"/>
 		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_vg_shak12"                force="true"/>
 		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_vg_polymer"               force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_contraband_assault_kit"   force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_amcar_assault_kit"        force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_fal_assault_kit"          force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_flint_assault_kit"        force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_g36_sniper_kit"           force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_g3_sniper_kit"            force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_sniper_kit"           force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_assault_kit"          force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_akm_assault_kit"          force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_scar_assault_kit"         force="true"/>
-		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_sub2000_assault_kit"      force="true"/>
 		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_mp5_s_proper"             force="true"/>
 		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_amcar_o_flipup"           force="true"/>
 		<texture         path="guis/dlcs/mods/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_s_short"            force="true"/>

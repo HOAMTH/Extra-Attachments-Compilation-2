@@ -696,9 +696,13 @@ local function pistol_gadgets()
 	local pistol_gadgets = {}
 	local pistol_needing_gadgets = {
 		"wpn_fps_pis_rage",
+		"wpn_fps_pis_x_rage",
 		"wpn_fps_pis_breech",
+		"wpn_fps_pis_x_breech",
 		"wpn_fps_pis_chinchilla",
+		"wpn_fps_pis_x_chinchilla",
 		"wpn_fps_pis_model3",
+		"wpn_fps_pis_x_model3",
 		"wpn_fps_pis_peacemaker",
 		"wpn_fps_snp_contender"
 	}

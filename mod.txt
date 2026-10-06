@@ -1,0 +1,7 @@
+{
+	"name" : "Extra Attachments Compilation 2",
+	"description" : "Adds extra barrel extensions, magazines, stocks, gadgets and other mods to many weapons.",
+	"author" : "HOAMTH",
+	"color" : "153 230 26",
+	"blt_version" : 2
+}

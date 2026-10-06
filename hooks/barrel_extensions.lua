@@ -38,7 +38,7 @@ end
 
 for m, data in ipairs(total_pis) do
 	for _, ns_pis in ipairs(all_total_ns) do
-		if table.contains(self[data].uses_parts, ns_pis) and ns_pis ~= "wpn_fps_pis_c96_nozzle" then
+		if table.contains(self[data].uses_parts, ns_pis) and ns_pis ~= "wpn_fps_pis_c96_nozzle" and ns_pis ~= "wpn_fps_pis_p226_co_comp_1" and ns_pis ~= "wpn_fps_pis_p226_co_comp_2" then
 			if not table.contains(all_pis_ns, ns_pis) then table.insert(all_pis_ns, ns_pis) end           -- Gather all the barrel extensions that are actually used by "Pistol-type" guns.
 		end
 	end

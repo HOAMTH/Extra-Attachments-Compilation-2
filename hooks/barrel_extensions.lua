@@ -96,24 +96,21 @@ for a, data in pairs(total_pis) do
 	end
 end
 
--- Some weapons (mostly mod-added ones) have no "barrel"-type part in their
--- blueprint. Barrel extensions whose default parent is "barrel" would then never
--- find their parent part, which makes attaching them freeze/hang the game (e.g.
--- the P226 Compensators on custom pistols that lack a barrel part). As a safety
--- net, fall back to a parent type that actually exists on the weapon so that the
--- part attaches there instead of getting stuck in the parent lookup.
 for i, data in ipairs(total_pis) do
 	local present = {} -- All part types this weapon actually has.
 	for _, p_id in ipairs(self[data].uses_parts) do
 		local part = self.parts[p_id]
 		if part and part.type then present[part.type] = true end
 	end
+	local parent = present.slide and "slide" or present.barrel and "barrel" or next(present)
 	for _, ns_id in ipairs(all_pis_ns) do
 		local part = self.parts[ns_id]
-		if part and part.parent and not present[part.parent] and not self[data].override[ns_id] then
-			local parent = present.slide and "slide" or present.barrel and "barrel" or next(present)
-			if parent then
-				self[data].override[ns_id] = { a_obj = part.a_obj or "a_ns", parent = parent }
+		if part and not self[data].override[ns_id] and parent then
+			if not part.parent or part.parent and not present[part.parent] then
+				self[data].override[ns_id] = {
+					a_obj = part.parent and (part.a_obj or "a_ns") or "a_ns",
+					parent = parent
+				}
 			end
 		end
 	end

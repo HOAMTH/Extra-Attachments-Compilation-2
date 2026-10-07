@@ -126,6 +126,32 @@ for i, part_ids in pairs(self.wpn_fps_ass_galil.uses_parts) do
 	end
 end
 
+--[[
+log("[EAC] Dumping lists:")
+log("[EAC] M4 foregrips:")
+for i, j in ipairs(EAC.m4_fg) do log(j) end
+log("[EAC] M4 grips:")
+for i, j in ipairs(EAC.m4_grips) do log(j) end
+log("[EAC] M4 butt stocks:")
+for i, j in ipairs(EAC.m4_butt) do log(j) end
+log("[EAC] M4 stocks:")
+for i, j in ipairs(EAC.m4_stocks) do log(j) end
+log("[EAC] M4 magazines:")
+for i, j in ipairs(EAC.m4_mags) do log(j) end
+log("[EAC] M4 upper recievers:")
+for i, j in ipairs(EAC.m4_ur) do log(j) end
+log("[EAC] AK stocks:")
+for i, j in ipairs(EAC.ak_stocks) do log(j) end
+log("[EAC] AK grips:")
+for i, j in ipairs(EAC.ak_grips) do log(j) end
+log("[EAC] AK foregrips:")
+for i, j in ipairs(EAC.ak_fg) do log(j) end
+log("[EAC] Rifle sights:")
+for i, j in ipairs(EAC.ar_sights) do log(j) end
+log("[EAC] Rifle gadgets:")
+for i, j in ipairs(EAC.ar_gadgets) do log(j) end
+]]
+
 -- Customs
 local custom_weapons = {
 "wpn_fps_smg_x_416",
@@ -140,10 +166,11 @@ local custom_weapons = {
 "wpn_fps_ass_x_s552",
 "wpn_fps_ass_x_asval",
 }
-for i, weapon_id in ipairs(custom_weapons) do
-	if not self[weapon_id] 				then self[weapon_id] = {}				end
-	if not self[weapon_id].override 	then self[weapon_id].override = {}		end
-	if not self[weapon_id].adds 		then self[weapon_id].adds = {}			end
-	if not self[weapon_id].uses_parts 	then self[weapon_id].uses_parts = {}	end
-end
+
+	for i, weapon_id in ipairs(custom_weapons) do
+		if not self[weapon_id] 				then self[weapon_id] = {}				end
+		if not self[weapon_id].override 	then self[weapon_id].override = {}		end
+		if not self[weapon_id].adds 		then self[weapon_id].adds = {}			end
+		if not self[weapon_id].uses_parts 	then self[weapon_id].uses_parts = {}	end
+	end
 end)

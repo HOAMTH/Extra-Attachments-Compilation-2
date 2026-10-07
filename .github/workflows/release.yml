@@ -16,11 +16,11 @@ jobs:
       - name: Update meta.json
         run: |
           TAG=${GITHUB_REF_NAME#v}
-          jq --arg version "$TAG" \
+          jq -n --arg version "$TAG" \
              --arg patchnotes "https://github.com/${GITHUB_REPOSITORY}/releases/tag/v${TAG}" \
-             --arg download "https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/Extra-Attachments-Compilation-2_v${TAG}.zip" \
-             '.version = $version | .patchnotes_url = $patchnotes | .download_url = $download' \
-             meta.json > meta.json.tmp && mv meta.json.tmp meta.json
+             --arg download "https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/Extra-Attachments-Compilation-2_${GITHUB_REF_NAME}.zip" \
+             '[{ident: "ExtraAttachmentsCompilation", version: $version, patchnotes_url: $patchnotes, download_url: $download}]' \
+             > meta.json
           cat meta.json
 
       - name: Create mod folder

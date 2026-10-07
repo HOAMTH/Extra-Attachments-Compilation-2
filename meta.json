@@ -1,6 +1,8 @@
-{
-	"ident": "ExtraAttachmentsCompilation",
-	"version": "2.1.4",
-	"patchnotes_url": "https://github.com/HOAMTH/Extra-Attachments-Compilation-2/releases/tag/v2.1.4",
-	"download_url": "https://github.com/HOAMTH/Extra-Attachments-Compilation-2/releases/download/v2.1.4/Extra-Attachments-Compilation-2_v2.1.4.zip"
-}
+[
+	{
+		"ident": "ExtraAttachmentsCompilation",
+		"version": "2.1.4",
+		"patchnotes_url": "https://github.com/HOAMTH/Extra-Attachments-Compilation-2/releases/tag/v2.1.4",
+		"download_url": "https://github.com/HOAMTH/Extra-Attachments-Compilation-2/releases/download/v2.1.4/Extra-Attachments-Compilation-2_v2.1.4.zip"
+	}
+]

@@ -40,3 +40,4 @@ jobs:
           files: |
             Extra-Attachments-Compilation-2_${{ github.ref_name }}.zip
             meta.json
+          token: ${{ secrets.RELEASE_TOKEN }}

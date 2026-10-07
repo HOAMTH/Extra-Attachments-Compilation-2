@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update meta.json
+        run: |
+          TAG=${GITHUB_REF_NAME#v}
+          jq --arg version "$TAG" \
+             --arg patchnotes "https://github.com/${GITHUB_REPOSITORY}/releases/tag/v${TAG}" \
+             --arg download "https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/Extra-Attachments-Compilation-2_v${TAG}.zip" \
+             '.version = $version | .patchnotes_url = $patchnotes | .download_url = $download' \
+             meta.json > meta.json.tmp && mv meta.json.tmp meta.json
+          cat meta.json
+
+      - name: Create mod folder
+        run: |
+          mkdir -p build/Extra-Attachments-Compilation-2
+          cp -r assets hooks Loc units main.xml mod.txt build/Extra-Attachments-Compilation-2/
+
+      - name: Zip mod folder
+        run: |
+          cd build
+          zip -r ../Extra-Attachments-Compilation-2_${GITHUB_REF_NAME}.zip Extra-Attachments-Compilation-2
+          cd ..
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Extra-Attachments-Compilation-2_${{ github.ref_name }}.zip
+            meta.json

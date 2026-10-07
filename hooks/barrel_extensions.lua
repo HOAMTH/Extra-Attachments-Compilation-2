@@ -15,6 +15,20 @@ local all_ar_ext = {}                   -- All AR-type extensions
 local total_sho = {}                    -- All Shotguns
 local all_sho_ns = {}                   -- All Shotgun-type extensions
 
+-- Drop any part that no longer exists or lacks the fields we rely on
+local function sanitize(list, field)
+	local clean = {}
+	for _, id in ipairs(list) do
+		local part = self.parts[id]
+		if part and type(part[field]) == "table" then
+			table.insert(clean, id)
+		end
+	end
+	return clean
+end
+all_parts_with_forbids   = sanitize(all_parts_with_forbids, "forbids")
+all_parts_with_overrides = sanitize(all_parts_with_overrides, "override")
+
 -- for id, w in pairs(tweak_data.upgrades.definitions) do 	-- Create a list of all weapons in the game.
     -- local weapon_tweak = tweak_data.weapon[w.weapon_id]
 	-- if w.weapon_id and weapon_tweak and w.factory_id and self[w.factory_id] and self[w.factory_id].uses_parts then

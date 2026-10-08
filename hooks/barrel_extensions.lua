@@ -50,7 +50,39 @@ end
 -- log("total_pis : " .. table.size(total_pis))
 -- for i, tpis in pairs(total_pis) do log(i .. " " .. tostring(tpis)) end
 
-for m, data in ipairs(total_pis) do
+for i, data in ipairs(existing_weapons) do
+     if (table.contains(self[data].uses_parts, "wpn_fps_upg_ns_ass_smg_small") or table.contains(self[data].uses_parts, "wpn_fps_upg_ass_ns_jprifles")) and data ~= "wpn_fps_aaaaa" then
+		table.insert(ar_smg_lmg, data)					-- Create a list of all ARs, SMGs, and LMGs (they all use either the "Low Profile Suppressor" or the "Competitor's Compensator").
+	end                                                 -- We'll use this to give all "AR-type" barrel extensions to every "AR-type" gun.
+end
+-- log("ar_smg_lmg : " .. table.size(ar_smg_lmg))
+-- for i, asl in pairs(ar_smg_lmg) do log(i .. tostring(asl)) end	
+
+for i, data in ipairs(existing_weapons) do
+     if table.contains(self[data].uses_parts, "wpn_fps_upg_ns_duck") and data ~= "wpn_fps_aaaaa" then
+		table.insert(total_sho, data)					-- Create a list of all Shotguns (They all use the "Duck Bill").
+	end
+end
+
+-- Only single-class weapons seed shared extension lists (AR-45: SMG+pistol -> leak -> freeze). Cross-class opt-in: table.insert(seeders.total_pis, "wpn_fps_smg_ar45")
+local seeders = {
+	total_pis = {},
+	ar_smg_lmg = {},
+	total_sho = {}
+}
+for _, data in ipairs(existing_weapons) do
+	local classes = 0
+	if table.contains(total_pis, data) then classes = classes + 1 end
+	if table.contains(ar_smg_lmg, data) then classes = classes + 1 end
+	if table.contains(total_sho, data) then classes = classes + 1 end
+	if classes == 1 then
+		if table.contains(total_pis, data) then table.insert(seeders.total_pis, data) end
+		if table.contains(ar_smg_lmg, data) then table.insert(seeders.ar_smg_lmg, data) end
+		if table.contains(total_sho, data) then table.insert(seeders.total_sho, data) end
+	end
+end
+
+for m, data in ipairs(seeders.total_pis) do
 	for _, ns_pis in ipairs(all_total_ns) do
 		if table.contains(self[data].uses_parts, ns_pis) and ns_pis ~= "wpn_fps_pis_c96_nozzle" and ns_pis ~= "wpn_fps_pis_p226_co_comp_1" and ns_pis ~= "wpn_fps_pis_p226_co_comp_2" then
 			if not table.contains(all_pis_ns, ns_pis) then table.insert(all_pis_ns, ns_pis) end           -- Gather all the barrel extensions that are actually used by "Pistol-type" guns.
@@ -116,15 +148,34 @@ for i, data in ipairs(total_pis) do
 		local part = self.parts[p_id]
 		if part and part.type then present[part.type] = true end
 	end
-	local parent = present.slide and "slide" or present.barrel and "barrel" or next(present)
+	local parent = nil
+	if present.slide then
+		parent = "slide"
+	elseif present.barrel then
+		parent = "barrel"
+	else
+		parent = next(present)
+	end
 	for _, ns_id in ipairs(all_pis_ns) do
 		local part = self.parts[ns_id]
-		if part and not self[data].override[ns_id] and parent then
-			if not part.parent or part.parent and not present[part.parent] then
-				self[data].override[ns_id] = {
-					a_obj = part.parent and (part.a_obj or "a_ns") or "a_ns",
-					parent = parent
-				}
+		if part and parent then
+			local override = self[data].override[ns_id]
+			local current_parent = part.parent
+			if override and override.parent then
+				current_parent = override.parent
+			end
+			if not current_parent or not present[current_parent] then
+				-- Fallback: vanilla/slide/barrel parent types can't be resolved -> point at a type the weapon has.
+				if override then
+					override.parent = parent
+				else
+					local a_obj = "a_ns"
+					if part.parent and part.a_obj then a_obj = part.a_obj end
+					self[data].override[ns_id] = {
+						a_obj = a_obj,
+						parent = parent
+					}
+				end
 			end
 		end
 	end
@@ -137,15 +188,7 @@ if not self.parts.wpn_fps_smg_pm9_b_standard.forbids then self.parts.wpn_fps_smg
 table.insert(self.parts.wpn_fps_smg_pm9_b_standard.forbids, "wpn_fps_upg_ass_ns_jprifles")
 table.insert(all_parts_with_forbids, "wpn_fps_smg_pm9_b_standard")
 
-for i, data in ipairs(existing_weapons) do
-     if table.contains(self[data].uses_parts, "wpn_fps_upg_ns_ass_smg_small" or "wpn_fps_upg_ass_ns_jprifles") and data ~= "wpn_fps_aaaaa" then
-		table.insert(ar_smg_lmg, data)					-- Create a list of all ARs, SMGs, and LMGs (they all use either the "Low Profile Suppressor" or the "Competitor's Compensator").
-	end                                                 -- We'll use this to give all "AR-type" barrel extensions to every "AR-type" gun.
-end
--- log("ar_smg_lmg : " .. table.size(ar_smg_lmg))
--- for i, asl in pairs(ar_smg_lmg) do log(i .. tostring(asl)) end	
-
-for i, asl in ipairs(ar_smg_lmg) do                     -- Gather all the barrel extensions that are actually used by "AR-type" guns.
+for i, asl in ipairs(seeders.ar_smg_lmg) do             -- Gather all the barrel extensions that are actually used by "AR-type" guns.
 	for j, bext in ipairs(all_total_ns) do
 		if table.contains(self[asl].uses_parts, bext) and bext ~= "wpn_fps_smg_scorpion_b_suppressed" and bext ~= "wpn_fps_upg_ns_pis_putnik" then 
 			table.insert(all_ar_ext, bext)                 -- I'm excluding the Scorpion's Suppressor because its model is positioned as if it was a barrel making it float on every other weapon.
@@ -160,6 +203,17 @@ table.insert(all_ar_ext, "wpn_fps_upg_tti_ns_standard")
 -- for i, arex in pairs(all_ar_ext) do	log(i .. " " .. tostring(arex) .. " " .. self.parts[arex].a_obj .. " " .. (self.parts[arex].parent or "-none-")) end
 
 for i, data in ipairs(ar_smg_lmg) do
+	local present = {} -- All part types this weapon actually has (freeze-safe parent fallback, mirrors the pistol loop).
+	for _, p_id in ipairs(self[data].uses_parts) do
+		local present_part = self.parts[p_id]
+		if present_part and present_part.type then present[present_part.type] = true end
+	end
+	local parent = "barrel" -- Fallback: ARs resolve the parent via their default barrel even if no barrel part is listed.
+	if present.barrel then
+		parent = "barrel"
+	elseif present.slide then
+		parent = "slide"
+	end
 	for j, ns_id in pairs(all_ar_ext) do
 		for k, forbidding in ipairs(all_parts_with_forbids) do
 			if self.parts[ns_id].sub_type == "silencer" then				-- Make sure that all of the to-be-added barrel extensions are also featured in "forbids" lists that would affect them.
@@ -192,8 +246,18 @@ for i, data in ipairs(ar_smg_lmg) do
 		end
 	end
 	for n, ns_id in pairs(all_ar_ext) do
-		if not self[data].override[ns_id] then	-- Is there already an override? Continue if not.
-			if not string.match(ns_id, data) then -- Does the barrel extension already belong to the weapon? Continue if they don't belong together.
+		local part = self.parts[ns_id]
+		local weapon_override = self[data].override[ns_id]
+		local current_parent = nil
+		if part then
+			current_parent = part.parent
+		end
+		if weapon_override and weapon_override.parent then
+			current_parent = weapon_override.parent
+		end
+		-- Same freeze protection as the pistol loop: unresolved parent -> point at a type the weapon has.
+		if part and not string.match(ns_id, data) and (not current_parent or not present[current_parent]) then
+			if not weapon_override then	-- Is there already an override? Continue if not.
 				if self.parts[ns_id].a_obj == "a_b" or self.parts[ns_id].parent == nil or self.parts[ns_id].parent == "slide" then -- Check for abnormal attachment points or lacking parent.
 					if self[data].override.wpn_fps_upg_ns_ass_smg_small or self[data].override.wpn_fps_upg_ass_ns_jprifles then 
 						if self[data].override.wpn_fps_upg_ns_ass_smg_small then -- Check if there's already an override for the Low Profile Suppressor or Competitor's Compensator.
@@ -204,9 +268,13 @@ for i, data in ipairs(ar_smg_lmg) do
 							-- log("Cloning Weapon Override (JP): " .. "self." .. data .. ".override." .. ns_id) 
 						end
 					else -- Since there is no override for these abnormal barrel extensions, we just set one.
-						self[data].override[ns_id] = {a_obj = "a_ns", parent = "barrel"}
+						self[data].override[ns_id] = {a_obj = "a_ns", parent = parent}
 						-- log("Setting Weapon Override : " .. "self." .. data .. ".override." .. ns_id) 
 					end
+				end
+			elseif weapon_override then
+				if not weapon_override.parent or not present[weapon_override.parent] then
+					weapon_override.parent = parent -- Harden overrides whose parent this weapon can't resolve.
 				end
 			end
 		end
@@ -226,15 +294,10 @@ end
 ---------------------------------------------------------------
 -- Shotguns
 
-for i, data in ipairs(existing_weapons) do
-     if table.contains(self[data].uses_parts, "wpn_fps_upg_ns_duck") and data ~= "wpn_fps_aaaaa" then
-		table.insert(total_sho, data)					-- Create a list of all pistols (They all use the "Flash Hider").
-	end                                                 -- We'll use this to give all "pistol-type" barrel extensions to every "pistol-type" gun.
-end
 -- log("total_sho : " .. table.size(total_sho))
 -- for i, tsh in pairs(total_sho) do log(i .. " " .. tostring(tsh)) end
 
-for m, data in ipairs(total_sho) do
+for m, data in ipairs(seeders.total_sho) do
 	for _, ns_sho in ipairs(all_total_ns) do
 		if table.contains(self[data].uses_parts, ns_sho) then
 			table.insert(all_sho_ns, ns_sho)            -- Gather all the barrel extensions that are actually used by "Pistol-type" guns.
@@ -268,4 +331,6 @@ for a, data in pairs(total_sho) do
 		end
 	end
 end
+
+
 end)
